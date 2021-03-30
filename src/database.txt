@@ -1,0 +1,63 @@
+create database SONELGAZE;
+use SONELGAZE;
+
+create table client(
+id int primary key auto_increment
+);
+
+ALTER TABLE client
+ADD  name varchar(50),
+ADD  phone varchar(20);
+
+create table document(
+id int primary key auto_increment
+);
+
+ALTER TABLE document
+ADD  name varchar(50);
+
+create table service(
+id int primary key
+);
+
+ALTER TABLE service
+ADD  name varchar(50);
+
+create table has(
+id int primary key auto_increment,
+idDocument int not null,
+idService int not null,
+FOREIGN KEY (idDocument) REFERENCES document(id),
+FOREIGN KEY (idService) REFERENCES service(id)
+);
+
+create table demand(
+id int primary key auto_increment,
+idClient int not null,
+idService int not null,
+FOREIGN KEY (idClient) REFERENCES client(id),   
+FOREIGN KEY (idService) REFERENCES service(id)
+);
+
+ALTER TABLE demand
+ADD  status boolean,
+ADD  date date;
+
+create table project(
+id int primary key auto_increment,
+idDemand int not null,
+FOREIGN KEY (idDemand) REFERENCES demand(id)
+);
+
+
+create table entreprenor(
+id int primary key auto_increment,
+idProject int not null,
+FOREIGN KEY (idProject) REFERENCES project(id)
+);
+
+ALTER TABLE entreprenor
+ADD  name varchar(50),
+ADD  phone varchar(20);
+
+

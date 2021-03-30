@@ -11,4 +11,42 @@ package model;
  */
 public class Document {
     private int id;
+    private String name;
+
+    
+    public Document(int id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
+    public Document(String name) {
+        this.name = name;
+    }
+
+    public Document(int id) {
+        this.id = id;
+    }
+    
+    public Document() {
+        
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+    
+    
+    
 }

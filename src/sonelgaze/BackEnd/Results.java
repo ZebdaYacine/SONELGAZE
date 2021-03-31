@@ -25,7 +25,23 @@ public class Results {
         DOCUMENT_UPDATED,
         DOCUMENT_NOT_UPDATED,
         DOCUMENT_DELETED,
-        DOCUMENT_NOT_DELETED
+        DOCUMENT_NOT_DELETED,
+        
+        
+        SERVICE_INSERTED,
+        SERVICE_NOT_INSERTED,
+        SERVICE_UPDATED,
+        SERVICE_NOT_UPDATED,
+        SERVICE_DELETED,
+        SERVICE_NOT_DELETED,
+        
+        
+        HAS_INSERTED,
+        HAS_NOT_INSERTED,
+        HAS_UPDATED,
+        HAS_NOT_UPDATED,
+        HAS_DELETED,
+        HAS_NOT_DELETED
     }
 
 }

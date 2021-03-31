@@ -18,9 +18,17 @@ public class Service {
         this.name = name;
     }
 
-    public Service() {
+    public Service(String name) {
+        this.name = name;
     }
 
+    public Service(int id) {
+        this.id = id;
+    }
+    
+    public Service() {
+    }
+    
     public int getId() {
         return id;
     }

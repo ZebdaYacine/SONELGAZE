@@ -17,7 +17,7 @@ ALTER TABLE document
 ADD  name varchar(50);
 
 create table service(
-id int primary key
+id int primary key AUTO_INCREMENT
 );
 
 ALTER TABLE service
@@ -30,6 +30,7 @@ idService int not null,
 FOREIGN KEY (idDocument) REFERENCES document(id),
 FOREIGN KEY (idService) REFERENCES service(id)
 );
+
 
 create table demand(
 id int primary key auto_increment,

@@ -74,10 +74,10 @@ public class ClientController {
 
     public static Object getClients(Client client) {
         String query ;
-        if (client.getId() == 0) {
+        if (client.getName() == null) {
             query = "SELECT * FROM client";
         } else {
-            query = "SELECT * FROM client where id = "+client.getId();
+            query = "SELECT * FROM client where name = '"+client.getName()+"'";
         }
         ObservableList<Client> listClient = FXCollections.observableArrayList(new Client());
         listClient.remove(0);

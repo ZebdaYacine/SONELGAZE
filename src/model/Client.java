@@ -26,6 +26,10 @@ public class Client {
         this.phone = phone;
     }
 
+    public Client(String name) {
+        this.name = name;
+    }
+    
     public Client(int id) {
         this.id = id;
     }

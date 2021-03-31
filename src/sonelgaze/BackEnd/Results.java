@@ -41,7 +41,14 @@ public class Results {
         HAS_UPDATED,
         HAS_NOT_UPDATED,
         HAS_DELETED,
-        HAS_NOT_DELETED
+        HAS_NOT_DELETED,
+        
+        DEMAND_INSERTED,
+        DEMAND_NOT_INSERTED,
+        DEMAND_UPDATED,
+        DEMAND_NOT_UPDATED,
+        DEMAND_DELETED,
+        DEMAND_NOT_DELETED
     }
 
 }

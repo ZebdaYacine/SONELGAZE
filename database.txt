@@ -41,7 +41,7 @@ FOREIGN KEY (idService) REFERENCES service(id)
 );
 
 ALTER TABLE demand
-ADD  status boolean,
+add  status varchar(50),
 ADD  date date;
 
 create table project(

@@ -5,6 +5,8 @@
  */
 package model;
 
+import java.util.Date;
+
 /**
  *
  * @author Zed-Yacine
@@ -14,10 +16,12 @@ public class Demand {
     private int id;
     private int idClient;
     private int idService;
-    private boolean status;
-    private boolean date;
+    private String status;
+    private Date date;
+    private String clientName;
+    private String serviceName;
 
-    public Demand(int id, int idClient, int idService, boolean status, boolean date) {
+    public Demand(int id, int idClient, int idService, String status, Date date) {
         this.id = id;
         this.idClient = idClient;
         this.idService = idService;
@@ -25,7 +29,17 @@ public class Demand {
         this.date = date;
     }
 
-    public Demand(int idClient, int idService, boolean status, boolean date) {
+    public Demand(int id,String clientName, String serviceName, String status, Date date ) {
+        this.id = id;
+        this.status = status;
+        this.date = date;
+        this.clientName = clientName;
+        this.serviceName = serviceName;
+    }
+    
+    
+
+    public Demand(int idClient, int idService, String status, Date date) {
         this.idClient = idClient;
         this.idService = idService;
         this.status = status;
@@ -35,6 +49,15 @@ public class Demand {
     public Demand(int id) {
         this.id = id;
     }
+    
+    public Demand(int idClient,String arg) {
+        this.idClient = idClient;
+    }
+
+    public Demand() {
+    }
+
+    
 
     public int getId() {
         return id;
@@ -60,21 +83,39 @@ public class Demand {
         this.idService = idService;
     }
 
-    public boolean isStatus() {
+    public String isStatus() {
         return status;
     }
 
-    public void setStatus(boolean status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 
-    public boolean isDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(boolean date) {
+    public void setDate(Date date) {
         this.date = date;
     }
+
+    public String getClientName() {
+        return clientName;
+    }
+
+    public void setClientName(String clientName) {
+        this.clientName = clientName;
+    }
+
+    public String getServiceName() {
+        return serviceName;
+    }
+
+    public void setServiceName(String serviceName) {
+        this.serviceName = serviceName;
+    }
+    
+    
 
     
     

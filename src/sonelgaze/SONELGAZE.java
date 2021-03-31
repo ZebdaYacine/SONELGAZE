@@ -6,6 +6,7 @@
 package sonelgaze;
 
 import com.mysql.jdbc.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.util.concurrent.CountDownLatch;
 import java.util.logging.Level;
@@ -18,10 +19,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import model.*;
-import sonelgaze.BackEnd.ClientController;
-import sonelgaze.BackEnd.DocumentController;
-import sonelgaze.BackEnd.HasController;
-import sonelgaze.BackEnd.ServiceController;
+import sonelgaze.BackEnd.*;
 
 /**
  *
@@ -79,21 +77,16 @@ public class SONELGAZE extends Application {
 //        System.err.println(ClientController.addClient(new Client("client3", "0658185867")));
 //        ObservableList<Client> listClient=(ObservableList<Client>) ClientController.getClients(new Client());
 //        System.err.println(listClient.size());
-
-
 //        System.err.println(DocumentController.addDocument(new Document("docs1")));
 //        System.err.println(DocumentController.updateDocument(new Document(1,"docs2")));
 //        ObservableList<Document> ListDocs = (ObservableList<Document>) DocumentController.getDocuments(new Document("docs1"));
 //        System.err.println(ListDocs.size());
 //        System.err.println(DocumentController.deleteDocuments(new Document(1)));
-
-
 //        System.err.println(ServiceController.addService(new Service("service03")));
 //        System.err.println(ServiceController.updateService(new Service(1,"service01")));
 //        ObservableList<Service> ListServices = (ObservableList<Service>) ServiceController.getService(new Service("service02"));
 //        System.err.println(ListServices.size());
 //        System.err.println(ServiceController.deleteServices(new Service(3)));
-
 //        System.err.println(HasController.addHas(new Has(1,3)));
 //        System.err.println(HasController.updateHas(new Has(9,1, 2)));
 //        ObservableList<Has> listHas = (ObservableList<Has>) HasController.getHas(new Has(3, ""));
@@ -104,6 +97,15 @@ public class SONELGAZE extends Application {
 //        System.err.println(HasController.deleteHas(new Has(10)));
 //        System.err.println(HasController.getServiceNameFromId(3));
 //        System.err.println(HasController.getDocumentNameFromId(1));
+//        System.err.println(DemandController.addDemand(new Demand(1, 3,"not yet", Date.valueOf("2015-03-31"))));
+//        System.err.println(DemandController.updateDemand(new Demand(8,1, 3, "not yet", Date.valueOf("2016-03-31"))));
+//        System.err.println(DemandController.deleteDemand(new Demand(5)));
+          ObservableList<Demand> listDemand = (ObservableList<Demand>) DemandController.getDemands(new Demand(1,""));
+          System.err.println(listDemand.size());
+          for (Demand demand : listDemand){
+              System.out.println(demand.getId()  +"|"+  demand.getClientName()+"|"+demand.getServiceName()
+              +" | "+demand.isStatus()+" | "+demand.getDate());
+          }
 
     }
 

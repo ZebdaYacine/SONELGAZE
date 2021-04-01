@@ -38,7 +38,6 @@ public class Demand {
     }
     
     
-
     public Demand(int idClient, int idService, String status, Date date) {
         this.idClient = idClient;
         this.idService = idService;

@@ -50,15 +50,26 @@ idDemand int not null,
 FOREIGN KEY (idDemand) REFERENCES demand(id)
 );
 
+alter table  project
+add column name varchar(50);
 
 create table entreprenor(
 id int primary key auto_increment,
+name varchar(50),
+phone varchar(20)
+);
+
+create table do(
+id int primary key auto_increment,
 idProject int not null,
+idEntreprenor int not null,
+FOREIGN KEY (idEntreprenor) REFERENCES entreprenor(id),
 FOREIGN KEY (idProject) REFERENCES project(id)
 );
 
-ALTER TABLE entreprenor
-ADD  name varchar(50),
-ADD  phone varchar(20);
+alter table do
+add column status varchar(20); 
+
+
 
 

@@ -96,4 +96,21 @@ public class ServiceController {
         return listService;
     }
     
+    public static int getServiceIdFromName(String name) {
+        String query = "SELECT id FROM service where name = '" + name+ "'";
+        int serviceid = 0;
+        try {
+            PreparedStatement ps = (PreparedStatement) con.prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                serviceid = rs.getInt("id");
+            }
+            rs.close();
+            ps.close();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return serviceid;
+    }
+    
 }

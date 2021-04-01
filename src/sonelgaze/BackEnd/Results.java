@@ -48,7 +48,22 @@ public class Results {
         DEMAND_UPDATED,
         DEMAND_NOT_UPDATED,
         DEMAND_DELETED,
-        DEMAND_NOT_DELETED
+        DEMAND_NOT_DELETED,
+        
+        PROJECT_INSERTED,
+        PROJECT_NOT_INSERTED,
+        PROJECT_UPDATED,
+        PROJECT_NOT_UPDATED,
+        PROJECT_DELETED,
+        PROJECT_NOT_DELETED,
+        
+        
+        DO_INSERTED,
+        DO_NOT_INSERTED,
+        DO_UPDATED,
+        DO_NOT_UPDATED,
+        DO_DELETED,
+        DO_NOT_DELETED
     }
 
 }

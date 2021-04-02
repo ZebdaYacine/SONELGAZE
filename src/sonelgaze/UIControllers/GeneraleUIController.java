@@ -74,7 +74,11 @@ public class GeneraleUIController implements Initializable {
 
     @FXML
     private void loadFoldersUI(ActionEvent event) throws IOException {
-
+        Parent root = FXMLLoader.load(getClass().getResource("/sonelgaze/FrontEnd/HasListUI.fxml"));
+        main.setCenter(null);
+        if (root != null) {
+            main.setCenter(root);
+        }
     }
 
     @FXML

@@ -15,9 +15,11 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import model.Client;
 import model.Document;
+import model.Has;
 import model.Service;
 import sonelgaze.BackEnd.ClientController;
 import sonelgaze.BackEnd.DocumentController;
+import sonelgaze.BackEnd.HasController;
 import sonelgaze.BackEnd.ServiceController;
 
 /**
@@ -67,6 +69,21 @@ public class SuperController implements Initializable {
         );
         Column2.setCellValueFactory(
                 new PropertyValueFactory<>("name")
+        );
+        table.setItems(d);
+    }
+    
+    public static void refrechHas(TableView table, TableColumn Column1, TableColumn Column2, TableColumn Column3, Has has)
+            throws SQLException {
+        ObservableList<Has> d = (ObservableList<Has>) HasController.getHas(has);
+        Column1.setCellValueFactory(
+                new PropertyValueFactory<>("id")
+        );
+        Column2.setCellValueFactory(
+                new PropertyValueFactory<>("serviceName")
+        );
+        Column3.setCellValueFactory(
+                new PropertyValueFactory<>("documentName")
         );
         table.setItems(d);
     }

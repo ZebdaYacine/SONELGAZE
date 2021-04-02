@@ -10,6 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import model.Document;
 import model.Has;
 import model.Service;
 import static sonelgaze.SONELGAZE.con;
@@ -89,7 +90,7 @@ public class HasController {
                 Has h = new Has();
                 h.setId(rs.getInt("id"));
                 h.setDocumentName(getDocumentNameFromId(rs.getInt("idDocument")));
-                h.setServiceName(getServiceNameFromId(has.getIdService()));
+                h.setServiceName(getServiceNameFromId(rs.getInt("idService")));
                 listHas.add(h);
             }
             rs.close();
@@ -116,7 +117,7 @@ public class HasController {
         }
         return serviceName;
     }
-    
+
     public static String getDocumentNameFromId(int id) {
         String query = "SELECT name FROM document where id = " + id;
         String docsName = "";
@@ -132,6 +133,48 @@ public class HasController {
             ex.printStackTrace();
         }
         return docsName;
+    }
+
+    public static Object getAllServicesNmae() {
+        String query;
+        query = "SELECT name FROM service ";
+        ObservableList<Service> listservices = FXCollections.observableArrayList(new Service());
+        listservices.remove(0);
+        try {
+            PreparedStatement ps = (PreparedStatement) con.prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Service services = new Service();
+                services.setName(rs.getString("name"));
+                listservices.add(services);
+            }
+            rs.close();
+            ps.close();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return listservices;
+    }
+
+    public static Object getAllDocsNmae() {
+        String query;
+        query = "SELECT name FROM document ";
+        ObservableList<Document> listDocs = FXCollections.observableArrayList(new Document());
+        listDocs.remove(0);
+        try {
+            PreparedStatement ps = (PreparedStatement) con.prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Document docs = new Document();
+                docs.setName(rs.getString("name"));
+                listDocs.add(docs);
+            }
+            rs.close();
+            ps.close();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return listDocs;
     }
 
 }

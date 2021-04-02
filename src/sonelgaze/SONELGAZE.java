@@ -19,8 +19,10 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import model.Client;
 import model.Entreprenor;
+import model.Has;
 import sonelgaze.BackEnd.ClientController;
 import sonelgaze.BackEnd.EntreprenorController;
+import sonelgaze.BackEnd.HasController;
 
 /**
  *
@@ -90,7 +92,7 @@ public class SONELGAZE extends Application {
 //        System.err.println(ServiceController.deleteServices(new Service(3)));
 //        System.err.println(HasController.addHas(new Has(1,3)));
 //        System.err.println(HasController.updateHas(new Has(9,1, 2)));
-//        ObservableList<Has> listHas = (ObservableList<Has>) HasController.getHas(new Has(3, ""));
+//        ObservableList<Has> listHas = (ObservableList<Has>) HasController.getHas(new Has());
 //        System.err.println(listHas.size());
 //        for (Has has : listHas){
 //            System.out.println(has.getId()  +"|"+  has.getDocumentName()  +"|"+has.getServiceName());

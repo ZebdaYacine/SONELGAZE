@@ -95,4 +95,21 @@ public class DocumentController {
         }
         return listDocs;
     }
+    
+    public static int getDocsIdFromName(String name) {
+        String query = "SELECT id FROM document where name = '" + name+ "'";
+        int docsId = 0;
+        try {
+            PreparedStatement ps = (PreparedStatement) con.prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                docsId = rs.getInt("id");
+            }
+            rs.close();
+            ps.close();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return docsId;
+    }
 }

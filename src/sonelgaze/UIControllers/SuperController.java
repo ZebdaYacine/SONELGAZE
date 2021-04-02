@@ -31,9 +31,9 @@ public class SuperController implements Initializable {
     }
 
     public static void refrechClients(TableView table, TableColumn Column1, TableColumn Column2, TableColumn Column3,
-            Object obj)
+            Object obj, String tab)
             throws SQLException {
-        ObservableList<Client> clients = (ObservableList<Client>) ClientController.getClients((Client) obj, "Client");
+        ObservableList<Client> clients = (ObservableList<Client>) ClientController.getClients((Client) obj, tab);
         Column1.setCellValueFactory(
                 new PropertyValueFactory<>("id")
         );
@@ -70,4 +70,6 @@ public class SuperController implements Initializable {
         );
         table.setItems(d);
     }
+    
+    
 }

@@ -22,17 +22,14 @@ import javafx.fxml.Initializable;
 import javafx.stage.Stage;
 import model.Client;
 import sonelgaze.BackEnd.ClientController;
-import static sonelgaze.UIControllers.ClientUIController.Column1;
-import static sonelgaze.UIControllers.ClientUIController.Column2;
-import static sonelgaze.UIControllers.ClientUIController.Column3;
-import static sonelgaze.UIControllers.ClientUIController.table;
+import static sonelgaze.UIControllers.EntreproUIController.*;
 
 /**
  * FXML Controller class
  *
  * @author Zed-Yacine
  */
-public class EditClientUIController implements Initializable {
+public class EditEntreproUIController implements Initializable {
 
     @FXML
     private JFXTextField name, phone, id;
@@ -46,7 +43,7 @@ public class EditClientUIController implements Initializable {
     @FXML
     private void deleteClientUI(ActionEvent event) throws IOException, SQLException {
         Client client = new Client(Integer.parseInt(id.getText()),name.getText(), phone.getText());
-        Options.information(ClientController.deleteClient(client, "client") + "");
+        Options.information(ClientController.deleteClient(client, "entreprenor") + "");
         refrechData();
     }
 
@@ -55,7 +52,7 @@ public class EditClientUIController implements Initializable {
         Client client = new Client(Integer.parseInt(id.getText()),name.getText(), phone.getText());
         boolean statusData = Client.isDataEmpty(client);
         if (statusData) {
-            Options.information(ClientController.updateClient(client, "client") + "");
+            Options.information(ClientController.updateClient(client, "entreprenor") + "");
             refrechData();
         } else {
             Options.error("les champs sont vides");
@@ -64,7 +61,7 @@ public class EditClientUIController implements Initializable {
 
     private void refrechData() {
         try {
-            SuperController.refrechClients(table, Column1, Column2, Column3, new Client(),"client");
+            SuperController.refrechClients(table, Column1, Column2, Column3, new Client(),"entreprenor");
         } catch (SQLException ex) {
             Logger.getLogger(ClientUIController1.class.getName()).log(Level.SEVERE, null, ex);
         }

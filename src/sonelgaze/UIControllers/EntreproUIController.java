@@ -25,6 +25,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import model.Client;
+import model.Entreprenor;
 
 /**
  * FXML Controller class
@@ -32,13 +33,13 @@ import model.Client;
  * @author Zed-Yacine
  */
 
-public class ClientUIController implements Initializable {
+public class EntreproUIController implements Initializable {
 
     @FXML
     private TableColumn nameColumn, idColumn, phoneColumn;
 
     @FXML
-    private TableView ClientsTable;
+    private TableView EntreproTable;
 
     @FXML
     private JFXTextField searchText;
@@ -49,9 +50,9 @@ public class ClientUIController implements Initializable {
 
     public void loadData(Client cln) {  
         try {
-            SuperController.refrechClients(ClientsTable,idColumn,nameColumn, phoneColumn,cln,"client");
+            SuperController.refrechClients(EntreproTable,idColumn,nameColumn, phoneColumn,cln,"entreprenor");
         } catch (SQLException ex) {
-            Logger.getLogger(ClientUIController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EntreproUIController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -60,7 +61,7 @@ public class ClientUIController implements Initializable {
         Column1=idColumn;
         Column2=nameColumn;
         Column3=phoneColumn;
-        table=ClientsTable;
+        table=EntreproTable;
         loadData(new Client());
     }
 
@@ -80,29 +81,29 @@ public class ClientUIController implements Initializable {
     @FXML
     private void loadClientUI(ActionEvent event) throws IOException {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/sonelgaze/FrontEnd/ClientUI1.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/sonelgaze/FrontEnd/AddEntreproUI.fxml"));
             Scene scene = new Scene(root);
             Stage stage = new Stage();
             stage.setScene(scene);
-            stage.setTitle("nouvelle Client");
+            stage.setTitle("nouvelle Entreproneur");
             stage.show();
         } catch (IOException ex) {
-            Logger.getLogger(ClientUIController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EntreproUIController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     @FXML
     private void selectClient(MouseEvent event) throws IOException {
-        Client client = (Client) ClientsTable.getSelectionModel().getSelectedItem();
+        Client client = (Client) EntreproTable.getSelectionModel().getSelectedItem();
         if (client == null) {
-            Options.information("aucun client sélectionné");
+            Options.information("aucun entreproneur sélectionné");
         } else {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/sonelgaze/FrontEnd/EditClientUI.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/sonelgaze/FrontEnd/EditEntreproUI.fxml"));
             Parent root = loader.load();
-            EditClientUIController controller = loader.getController();
+            EditEntreproUIController controller = loader.getController();
             controller.intiFileds(client);
             Stage stage = new Stage();
-            stage.setTitle("information de client");
+            stage.setTitle("information de entreproneur");
             stage.setScene(new Scene(root));
             stage.show();
         }

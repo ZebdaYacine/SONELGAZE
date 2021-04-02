@@ -11,11 +11,16 @@ import java.util.concurrent.CountDownLatch;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Application;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import model.Client;
+import model.Entreprenor;
+import sonelgaze.BackEnd.ClientController;
+import sonelgaze.BackEnd.EntreprenorController;
 
 /**
  *
@@ -110,10 +115,14 @@ public class SONELGAZE extends Application {
 //        for (Project prj : listProject){
 //             System.out.println(prj.getId()+" |  "+prj.getName()+" | "+prj.getIdDemand());
 //         }
-//        System.err.println(EntreprenorController.addClient(new Entreprenor("entrper3", "0658185867"),"entreprenor"));
+
+
+//        System.err.println(EntreprenorController.addClient(new Entreprenor("entrper4", "0658185867"),"entreprenor"));
 //        System.err.println(EntreprenorController.deleteClient(new Entreprenor(2),"entreprenor"));
-//        ObservableList<Client> listClient = (ObservableList<Client>) ClientController.getClients(new Client(),"entreprenor");
+//        ObservableList<Client> listClient = (ObservableList<Client>) ClientController.getClients(new Client("entrper3"),"entreprenor");
 //        System.err.println(listClient.size());
+
+
 //        System.err.println(DoController.addDo(new Do(2, 2,"not yet")));
 //        System.err.println(DoController.updateDO(new Do(3,2,1,"yes")));
 //          System.err.println(DoController.deleteDO(new Do(4)));

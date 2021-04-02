@@ -16,15 +16,17 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import model.Client;
+import model.Entreprenor;
 import sonelgaze.BackEnd.ClientController;
-import static sonelgaze.UIControllers.ClientUIController.*;
+import sonelgaze.BackEnd.EntreprenorController;
+import static sonelgaze.UIControllers.EntreproUIController.*;
 
 /**
  * FXML Controller class
  *
  * @author Zed-Yacine
  */
-public class ClientUIController1 implements Initializable {
+public class AddEntreproUIController implements Initializable {
 
     /**
      * Initializes the controller class.
@@ -39,10 +41,10 @@ public class ClientUIController1 implements Initializable {
 
     @FXML
     private void addClient(ActionEvent event) throws IOException, SQLException {
-        Client client = new Client(name.getText(), phone.getText());
-        boolean statusData = Client.isDataEmpty(client);
+        Entreprenor entrepo = new Entreprenor(name.getText(), phone.getText());
+        boolean statusData = Entreprenor.isDataEmpty(entrepo);
         if (statusData) {
-            Options.information(ClientController.addClient(client, "client") + "");
+            Options.information(EntreprenorController.addClient(entrepo, "entreprenor") + "");
             refrechData();
         } else {
             Options.error("les champs sont vides");
@@ -51,9 +53,9 @@ public class ClientUIController1 implements Initializable {
 
     public void refrechData() {
         try {
-            SuperController.refrechClients(table, Column1, Column2, Column3, new Client(),"client");
+            SuperController.refrechClients(table, Column1, Column2, Column3, new Client(),"entreprenor");
         } catch (SQLException ex) {
-            Logger.getLogger(ClientUIController1.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AddEntreproUIController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }

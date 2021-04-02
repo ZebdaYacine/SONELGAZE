@@ -79,7 +79,11 @@ public class GeneraleUIController implements Initializable {
 
     @FXML
     private void loadEnterproUI(ActionEvent event) throws IOException {
-
+        Parent root = FXMLLoader.load(getClass().getResource("/sonelgaze/FrontEnd/EntreproUI.fxml"));
+        main.setCenter(null);
+        if (root != null) {
+            main.setCenter(root);
+        }
     }
 
     @FXML

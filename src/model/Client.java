@@ -60,4 +60,8 @@ public class Client {
     public void setPhone(String phone) {
         this.phone = phone;
     }
+    
+    public static boolean isDataEmpty(Client client) {
+        return !client.getName().isEmpty() && !client.getPhone().isEmpty();
+    }
 }

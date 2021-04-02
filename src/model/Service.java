@@ -44,4 +44,8 @@ public class Service {
     public void setName(String name) {
         this.name = name;
     }
+    
+     public static boolean isDataEmpty(Service service) {
+        return !service.getName().isEmpty();
+    }
 }

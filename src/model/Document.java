@@ -10,10 +10,10 @@ package model;
  * @author Zed-Yacine
  */
 public class Document {
+
     private int id;
     private String name;
 
-    
     public Document(int id, String name) {
         this.id = id;
         this.name = name;
@@ -26,11 +26,11 @@ public class Document {
     public Document(int id) {
         this.id = id;
     }
-    
+
     public Document() {
-        
+
     }
-    
+
     public int getId() {
         return id;
     }
@@ -46,7 +46,9 @@ public class Document {
     public void setName(String name) {
         this.name = name;
     }
-    
-    
-    
+
+    public static boolean isDataEmpty(Document docs) {
+        return !docs.getName().isEmpty();
+    }
+
 }

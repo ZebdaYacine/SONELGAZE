@@ -6,20 +6,16 @@
 package sonelgaze;
 
 import com.mysql.jdbc.Connection;
-import java.sql.Date;
 import java.sql.DriverManager;
 import java.util.concurrent.CountDownLatch;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Application;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import model.*;
-import sonelgaze.BackEnd.*;
 
 /**
  *
@@ -61,8 +57,8 @@ public class SONELGAZE extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/sonelgaze/FrontEnd/Root.fxml"));
-        Scene scene = new Scene(root);
+        root = FXMLLoader.load(getClass().getResource("/sonelgaze/FrontEnd/RootUI.fxml"));
+        scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
     }
@@ -71,8 +67,8 @@ public class SONELGAZE extends Application {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        //launch(args);
-        SONELGAZE SNG = new SONELGAZE();
+        launch(args);
+        //SONELGAZE SNG = new SONELGAZE();
 
 //        System.err.println(ClientController.addClient(new Client("client5", "0658185867"),"client"));
 //        ObservableList<Client> listClient = (ObservableList<Client>) ClientController.getClients(new Client(),"client");

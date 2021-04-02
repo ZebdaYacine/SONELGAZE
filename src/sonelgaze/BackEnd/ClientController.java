@@ -19,17 +19,18 @@ import static sonelgaze.SONELGAZE.con;
  */
 public class ClientController {
 
-    private static void alterIdClient(int id,String tab) throws SQLException {
-        String sql = "ALTER TABLE `"+tab+"` AUTO_INCREMENT =" + id + "";
+
+    private static void alterIdClient(int id, String tab) throws SQLException {
+        String sql = "ALTER TABLE `" + tab + "` AUTO_INCREMENT =" + id + "";
         PreparedStatement stm = (PreparedStatement) con.prepareStatement(sql);
         stm.execute();
         stm.close();
     }
 
-    public static Results.Rstls addClient(Client client,String tab) {
+    public static Results.Rstls addClient(Client client, String tab) {
         try {
             PreparedStatement stm = (PreparedStatement) con.prepareStatement(""
-                    + "insert into "+tab+" (name,phone) values (?,?)");
+                    + "insert into " + tab + " (name,phone) values (?,?)");
             stm.setString(1, client.getName());
             stm.setString(2, client.getPhone());
             stm.executeUpdate();
@@ -41,10 +42,10 @@ public class ClientController {
         }
     }
 
-    public static Results.Rstls updateClient(Client client,String tab) {
+    public static Results.Rstls updateClient(Client client, String tab) {
         try {
             PreparedStatement stm = (PreparedStatement) con.prepareStatement("UPDATE "
-                    + ""+tab+" SET name = ?, phone = ? WHERE id = ? ");
+                    + "" + tab + " SET name = ?, phone = ? WHERE id = ? ");
             stm.setString(1, client.getName());
             stm.setString(2, client.getPhone());
             stm.setInt(3, client.getId());
@@ -57,13 +58,13 @@ public class ClientController {
         }
     }
 
-    public static Results.Rstls deleteClient(Client client,String tab) {
+    public static Results.Rstls deleteClient(Client client, String tab) {
         try {
             PreparedStatement stm = (PreparedStatement) con.prepareStatement("DELETE FROM "
-                    + ""+tab+" WHERE id = ?");
+                    + "" + tab + " WHERE id = ?");
             stm.setInt(1, client.getId());
             stm.executeUpdate();
-            alterIdClient(client.getId(),tab);
+            alterIdClient(client.getId(), tab);
             stm.close();
             return Results.Rstls.CLIENT_DELETED;
         } catch (Exception ex) {
@@ -72,12 +73,12 @@ public class ClientController {
         }
     }
 
-    public static Object getClients(Client client,String tab) {
-        String query ;
+    public static Object getClients(Client client, String tab) {
+        String query;
         if (client.getName() == null) {
-            query = "SELECT * FROM "+tab+"";
+            query = "SELECT * FROM " + tab + "";
         } else {
-            query = "SELECT * FROM "+tab+" where name = '"+client.getName()+"'";
+            query = "SELECT * FROM " + tab + " where name LIKE '" + client.getName() + "%'";
         }
         ObservableList<Client> listClient = FXCollections.observableArrayList(new Client());
         listClient.remove(0);
@@ -98,9 +99,9 @@ public class ClientController {
         }
         return listClient;
     }
-    
+
     public static int getClientIdFromName(String name, String tab) {
-        String query = "SELECT id FROM "+tab+" where name = '" + name +" ' ";
+        String query = "SELECT id FROM " + tab + " where name = '" + name + " ' ";
         int clientId = 0;
         try {
             PreparedStatement ps = (PreparedStatement) con.prepareStatement(query);

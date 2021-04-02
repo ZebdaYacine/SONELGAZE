@@ -75,7 +75,7 @@ public class DocumentController {
         if (docs.getName() == null) {
             query = "SELECT * FROM document";
         } else {
-            query = "SELECT * FROM document where name = '"+docs.getName()+"'";
+            query = "SELECT * FROM document where name LIKE '"+docs.getName()+"%'";
         }
         ObservableList<Document> listDocs = FXCollections.observableArrayList(new Document());
         listDocs.remove(0);

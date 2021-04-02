@@ -75,7 +75,7 @@ public class ServiceController {
         if (service.getName() == null) {
             query = "SELECT * FROM service";
         } else {
-            query = "SELECT * FROM service where name = '"+service.getName()+"'";
+            query = "SELECT * FROM service where name LIKE '"+service.getName()+"%'";
         }
         ObservableList<Service> listService = FXCollections.observableArrayList(new Service());
         listService.remove(0);

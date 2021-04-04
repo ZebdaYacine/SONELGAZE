@@ -114,9 +114,9 @@ public class Demand {
         this.serviceName = serviceName;
     }
     
-    
+     public boolean isDataValid(){
+        return this.getDate()!=null && this.isStatus()!=null;
+    }
 
-    
-    
 
 }

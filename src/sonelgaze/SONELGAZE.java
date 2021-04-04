@@ -6,6 +6,7 @@
 package sonelgaze;
 
 import com.mysql.jdbc.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.util.concurrent.CountDownLatch;
 import java.util.logging.Level;
@@ -18,9 +19,11 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import model.Client;
+import model.Demand;
 import model.Entreprenor;
 import model.Has;
 import sonelgaze.BackEnd.ClientController;
+import sonelgaze.BackEnd.DemandController;
 import sonelgaze.BackEnd.EntreprenorController;
 import sonelgaze.BackEnd.HasController;
 
@@ -75,7 +78,7 @@ public class SONELGAZE extends Application {
      */
     public static void main(String[] args) {
         launch(args);
-        //SONELGAZE SNG = new SONELGAZE();
+//        SONELGAZE SNG = new SONELGAZE();
 
 //        System.err.println(ClientController.addClient(new Client("client5", "0658185867"),"client"));
 //        ObservableList<Client> listClient = (ObservableList<Client>) ClientController.getClients(new Client(),"client");
@@ -100,7 +103,7 @@ public class SONELGAZE extends Application {
 //        System.err.println(HasController.deleteHas(new Has(10)));
 //        System.err.println(HasController.getServiceNameFromId(3));
 //        System.err.println(HasController.getDocumentNameFromId(1));
-//        System.err.println(DemandController.addDemand(new Demand(1, 3,"not yet", Date.valueOf("2015-03-31"))));
+//        System.err.println(DemandController.addDemand(new Demand(2, 2,"not yet", Date.valueOf("2015-03-31"))));
 //        System.err.println(DemandController.updateDemand(new Demand(8,1, 3, "not yet", Date.valueOf("2016-03-31"))));
 //        System.err.println(DemandController.deleteDemand(new Demand(5)));
 //          ObservableList<Demand> listDemand = (ObservableList<Demand>) DemandController.getDemands(new Demand(1,""));

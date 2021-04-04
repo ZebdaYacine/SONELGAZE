@@ -13,6 +13,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.Demand;
 import model.Project;
+import model.Service;
 import static sonelgaze.BackEnd.DemandController.getClientNameFromId;
 import static sonelgaze.BackEnd.DemandController.getServiceNameFromId;
 import static sonelgaze.SONELGAZE.con;
@@ -48,7 +49,7 @@ public class ProjectController {
     public static Results.Rstls updateProject(Project prjt) {
         try {
             PreparedStatement stm = (PreparedStatement) con.prepareStatement("UPDATE "
-                    + "project SET idDemand = ? , name =?  WHERE id = ? ");
+                    + "project SET idDemand = ? , name =? WHERE id = ? ");
             stm.setInt(1, prjt.getIdDemand());
             stm.setString(2, prjt.getName());
             stm.setInt(3, prjt.getId());
@@ -82,7 +83,7 @@ public class ProjectController {
         if (prjt.getIdDemand() == 0) {
             query = "SELECT * FROM project";
         } else {
-            query = "SELECT * FROM project where idDemand = '" + prjt.getIdDemand() + "'";
+            query = "SELECT * FROM project where idDemand = " + prjt.getIdDemand();
         }
         ObservableList<Project> listProject = FXCollections.observableArrayList(new Project());
         listProject.remove(0);
@@ -119,6 +120,27 @@ public class ProjectController {
             ex.printStackTrace();
         }
         return projectId;
+    }
+    
+     public static Object getAllProjectsName() {
+        String query;
+        query = "SELECT name FROM project ";
+        ObservableList<Project> listProject = FXCollections.observableArrayList(new Project());
+        listProject.remove(0);
+        try {
+            PreparedStatement ps = (PreparedStatement) con.prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Project projects = new Project();
+                projects.setName(rs.getString("name"));
+                listProject.add(projects);
+            }
+            rs.close();
+            ps.close();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return listProject;
     }
     
 

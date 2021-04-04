@@ -13,6 +13,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.Demand;
 import model.Do;
+import model.Service;
 import static sonelgaze.SONELGAZE.con;
 
 /**
@@ -47,9 +48,9 @@ public class DoController {
     public static Results.Rstls updateDO(Do d) {
         try {
             PreparedStatement stm = (PreparedStatement) con.prepareStatement("UPDATE "
-                    + "do SET idProject = ? , idEntreprenor =? , status=?  WHERE id = ? ");
-            stm.setInt(1, d.getId());
-            stm.setInt(2, d.getIdEtrepo());
+                    + "do SET  idEntreprenor =? , idProject = ?  , status=?  WHERE id = ? ");
+            stm.setInt(1, d.getIdEtrepo());
+            stm.setInt(2, d.getIdProject());
             stm.setString(3, d.getStatus());
             stm.setInt(4, d.getId());
             stm.executeUpdate();
@@ -137,5 +138,7 @@ public class DoController {
         }
         return entreproName;
     }
+    
+   
 
 }

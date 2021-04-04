@@ -39,7 +39,6 @@
                 <Insets left="10.0" right="10.0" />
             </GridPane.margin>
          <stylesheets>
-            <URL value="@../style/StorgeStyle.css" />
             <URL value="@../Styles/clientui.css" />
          </stylesheets>
         </JFXButton>

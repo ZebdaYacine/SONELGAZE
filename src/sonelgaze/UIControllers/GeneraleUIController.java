@@ -92,17 +92,29 @@ public class GeneraleUIController implements Initializable {
 
     @FXML
     private void loadDemends(ActionEvent event) throws IOException {
-
+        Parent root = FXMLLoader.load(getClass().getResource("/sonelgaze/FrontEnd/DemandListUI.fxml"));
+        main.setCenter(null);
+        if (root != null) {
+            main.setCenter(root);
+        }
     }
 
     @FXML
     private void loadProjects(ActionEvent event) throws IOException {
-
+        Parent root = FXMLLoader.load(getClass().getResource("/sonelgaze/FrontEnd/ProjectListUI.fxml"));
+        main.setCenter(null);
+        if (root != null) {
+            main.setCenter(root);
+        }
     }
 
     @FXML
-    private void loadDos(ActionEvent event) throws IOException {
-
+    private void loadDo(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/sonelgaze/FrontEnd/DoListUI.fxml"));
+        main.setCenter(null);
+        if (root != null) {
+            main.setCenter(root);
+        }
     }
 
     @FXML

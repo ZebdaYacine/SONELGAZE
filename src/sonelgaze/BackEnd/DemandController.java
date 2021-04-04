@@ -80,9 +80,9 @@ public class DemandController {
     public static Object getDemands(Demand demand) {
         String query;
         if (demand.getIdClient() == 0) {
-            query = "SELECT * FROM demand";
+            query = "SELECT * FROM demand where status !='payment'";
         } else {
-            query = "SELECT * FROM demand where idClient = '" + demand.getIdClient() + "'";
+            query = "SELECT * FROM demand where idClient = '" + demand.getIdClient() + "' and status !='payment'";
         }
         ObservableList<Demand> listDemand = FXCollections.observableArrayList(new Demand());
         listDemand.remove(0);
@@ -139,5 +139,6 @@ public class DemandController {
         }
         return serviceName;
     }
-
+    
+   
 }

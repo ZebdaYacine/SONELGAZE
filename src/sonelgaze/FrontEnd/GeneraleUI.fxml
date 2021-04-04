@@ -150,7 +150,7 @@
                   <Font name="System Bold" size="12.0" />
                </font>
             </JFXButton>
-            <JFXButton id="storgebtn" fx:id="logoutBtn" alignment="CENTER" layoutX="10.0" layoutY="328.0" onAction="#loadDos" prefHeight="40.0" prefWidth="250.0" text="    Réalisation" textAlignment="RIGHT">
+            <JFXButton id="storgebtn" fx:id="logoutBtn" alignment="CENTER" layoutX="10.0" layoutY="328.0" onAction="#loadDo" prefHeight="40.0" prefWidth="250.0" text="    Réalisation" textAlignment="RIGHT">
                <graphic>
                   <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                      <image>

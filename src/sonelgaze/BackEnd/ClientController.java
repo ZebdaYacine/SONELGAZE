@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.Client;
+import model.Service;
 import static sonelgaze.SONELGAZE.con;
 
 /**
@@ -116,5 +117,28 @@ public class ClientController {
         }
         return clientId;
     }
+    
+    public static Object getAllClientsName() {
+        String query;
+        query = "SELECT name FROM client ";
+        ObservableList<Client> listClients = FXCollections.observableArrayList(new Client());
+        listClients.remove(0);
+        try {
+            PreparedStatement ps = (PreparedStatement) con.prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Client client = new Client();
+                client.setName(rs.getString("name"));
+                listClients.add(client);
+            }
+            rs.close();
+            ps.close();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return listClients;
+    }
+
+    
 
 }

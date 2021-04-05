@@ -95,6 +95,13 @@ public class EditDemandUIController implements Initializable {
                 if (Options.attention(str)) {
                     int d = Integer.parseInt(id.getText());
                     Options.information(ProjectController.addProject(new Project(d, "")) + "");
+                    Demand d1 = new Demand(idClient, idService, status, Date.valueOf(dte));
+                    d1.setServiceName((String) CmbService.getSelectionModel().getSelectedItem());
+                    d1.setClientName((String) CmbClient.getSelectionModel().getSelectedItem());
+                    d1.setId(DemandController.getDemandId(d1));
+                    new Thread(() -> {
+                        Bill.demandBill(d1, ClientController.getClientPhoneFromId(idClient, "client"));
+                    }).start();
                 } else {
                     Options.information("impossible de terminer cette transaction");
                 }

@@ -20,7 +20,6 @@ import static sonelgaze.SONELGAZE.con;
  */
 public class ClientController {
 
-
     private static void alterIdClient(int id, String tab) throws SQLException {
         String sql = "ALTER TABLE `" + tab + "` AUTO_INCREMENT =" + id + "";
         PreparedStatement stm = (PreparedStatement) con.prepareStatement(sql);
@@ -117,7 +116,7 @@ public class ClientController {
         }
         return clientId;
     }
-    
+
     public static Object getAllClientsName() {
         String query;
         query = "SELECT name FROM client ";
@@ -139,6 +138,38 @@ public class ClientController {
         return listClients;
     }
 
+    public static String getClientPhoneFromId(int id, String tab) {
+        String query = "SELECT phone FROM " + tab + " where id = " + id;
+        String clientPhone = "";
+        try {
+            PreparedStatement ps = (PreparedStatement) con.prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                clientPhone = rs.getString("phone");
+            }
+            rs.close();
+            ps.close();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return clientPhone;
+    }
     
+    public static String getClientNmaeFromId(int id, String tab) {
+        String query = "SELECT name FROM " + tab + " where id = " + id ;
+        String clientName = "";
+        try {
+            PreparedStatement ps = (PreparedStatement) con.prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                clientName = rs.getString("name");
+            }
+            rs.close();
+            ps.close();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return clientName;
+    }
 
 }

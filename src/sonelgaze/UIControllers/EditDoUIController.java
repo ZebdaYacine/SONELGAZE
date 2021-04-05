@@ -25,6 +25,7 @@ import javafx.fxml.Initializable;
 import model.Client;
 import model.Demand;
 import model.Do;
+import model.Entreprenor;
 import model.Project;
 import model.Service;
 import sonelgaze.BackEnd.ClientController;
@@ -47,13 +48,13 @@ import static sonelgaze.UIControllers.DoListUIController.table;
  * @author Zed-Yacine
  */
 public class EditDoUIController implements Initializable {
-    
+
     @FXML
     private JFXComboBox CmbEntrepro, CmbProject, CmbStatus;
-    
+
     @FXML
     private JFXTextField id;
-    
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         ObservableList<Project> projects = (ObservableList<Project>) ProjectController.getAllProjectsName();
@@ -64,7 +65,7 @@ public class EditDoUIController implements Initializable {
             CmbProject.getItems().add(item.getName());
         }
         CmbProject.getSelectionModel().selectFirst();
-        
+
         for (Client item : clients) {
             CmbEntrepro.getItems().add(item.getName());
         }
@@ -78,28 +79,34 @@ public class EditDoUIController implements Initializable {
             CmbStatus.getItems().add(item);
         }
     }
-    
+
     @FXML
     private void deleteDoUI(ActionEvent event) throws IOException, SQLException {
         Do d = new Do(Integer.parseInt(id.getText()));
         Options.information(DoController.deleteDO(d) + "");
         refrechData();
     }
-    
+
     @FXML
     private void updateDoUI(ActionEvent event) throws IOException, SQLException {
         String status = (String) CmbStatus.getSelectionModel().getSelectedItem();
         int idProject = ProjectController.getProjectIdFromName((String) CmbProject.getSelectionModel().getSelectedItem());
         int idEntrepro = EntreprenorController.getClientIdFromName((String) CmbEntrepro.getSelectionModel().getSelectedItem(), "entreprenor");
+        Project p = new Project(idProject,0, (String) CmbProject.getSelectionModel().getSelectedItem());
+        String phone = EntreprenorController.getClientPhoneFromId(idEntrepro, "entreprenor");
+        Entreprenor e = new Entreprenor((String) CmbEntrepro.getSelectionModel().getSelectedItem(), phone);
         if (status != "") {
             Do d = new Do(Integer.parseInt(id.getText()), idEntrepro, idProject, status);
             Options.information(DoController.updateDO(d) + "");
             refrechData();
+            new Thread(() -> {
+                Bill.doingProjectBill(p, d, e, 17);
+            }).start();
         } else {
             Options.information("les champs sont vide");
         }
     }
-    
+
     public void refrechData() {
         try {
             SuperController.refrechDo(table, Column1, Column2, Column3, Column4, new Do());
@@ -107,12 +114,12 @@ public class EditDoUIController implements Initializable {
             Logger.getLogger(DoListUIController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     public void intiFileds(Do d) {
         id.setText(d.getId() + "");
         CmbEntrepro.setValue(d.getEtrepoName());
         CmbProject.setValue(d.getProjectName());
         CmbStatus.setValue(d.getStatus());
     }
-    
+
 }

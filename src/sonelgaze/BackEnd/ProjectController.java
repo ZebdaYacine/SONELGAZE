@@ -143,6 +143,21 @@ public class ProjectController {
         return listProject;
     }
     
-
+     public static String getProjectNameFromId(int id) {
+        String query = "SELECT name FROM project where id = "+id;
+        String project = "";
+        try {
+            PreparedStatement ps = (PreparedStatement) con.prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                project = rs.getString("name");
+            }
+            rs.close();
+            ps.close();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return project;
+    }
     
 }

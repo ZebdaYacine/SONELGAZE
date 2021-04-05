@@ -139,6 +139,24 @@ public class DemandController {
         }
         return serviceName;
     }
-    
-   
+
+    public static int getDemandId(Demand demand) {
+        String query;
+        query = "SELECT id FROM demand where idClient=" + demand.getIdClient() + " and idService=" + demand.getIdService();
+        int id = 0;
+        try {
+            PreparedStatement ps = (PreparedStatement) con.prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                id = rs.getInt("id");
+            }
+            rs.close();
+            ps.close();
+            return id;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return 0;
+    }
+
 }

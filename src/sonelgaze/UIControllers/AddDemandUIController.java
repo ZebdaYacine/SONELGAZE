@@ -85,8 +85,9 @@ public class AddDemandUIController implements Initializable {
             refrechData();
             d.setServiceName((String) CmbService.getSelectionModel().getSelectedItem());
             d.setClientName((String) CmbClient.getSelectionModel().getSelectedItem());
+            d.setId(DemandController.getDemandId(d));
             new Thread(() -> {
-                Bill.demandBill(d, "0658185867");
+                Bill.demandBill(d,ClientController.getClientPhoneFromId(idClient,"client"));
             }).start();
         } else {
             Options.information("les champssont vide");

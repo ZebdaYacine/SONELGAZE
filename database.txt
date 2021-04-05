@@ -9,12 +9,21 @@ ALTER TABLE client
 ADD  name varchar(50),
 ADD  phone varchar(20);
 
+ALTER TABLE client
+ADD  UNIQUE(phone);
+
+ALTER TABLE client
+ADD  UNIQUE(name);
+
 create table document(
 id int primary key auto_increment
 );
 
 ALTER TABLE document
 ADD  name varchar(50);
+
+ALTER TABLE document
+ADD  UNIQUE(name);
 
 create table service(
 id int primary key AUTO_INCREMENT
@@ -23,6 +32,9 @@ id int primary key AUTO_INCREMENT
 ALTER TABLE service
 ADD  name varchar(50);
 
+ALTER TABLE service
+ADD  UNIQUE(name);
+
 create table has(
 id int primary key auto_increment,
 idDocument int not null,
@@ -30,6 +42,9 @@ idService int not null,
 FOREIGN KEY (idDocument) REFERENCES document(id) on delete cascade on update cascade,
 FOREIGN KEY (idService) REFERENCES service(id) on delete cascade on update cascade
 );
+
+ALTER TABLE has
+ADD  UNIQUE(idDocument,idService);
 
 
 create table demand(
@@ -44,20 +59,32 @@ ALTER TABLE demand
 add  status varchar(50),
 ADD  date date;
 
+ALTER TABLE demand
+ADD  UNIQUE(idClient,idService);
+
 create table project(
 id int primary key auto_increment,
 idDemand int not null,
-FOREIGN KEY (idDemand) REFERENCES demand(id)
+FOREIGN KEY (idDemand) REFERENCES demand(id) on delete cascade on update cascade
 );
 
 alter table  project
 add column name varchar(50);
+
+ALTER TABLE project
+ADD  UNIQUE(name);
 
 create table entreprenor(
 id int primary key auto_increment,
 name varchar(50),
 phone varchar(20)
 );
+
+ALTER TABLE entreprenor
+ADD  UNIQUE(name);
+
+ALTER TABLE entreprenor
+ADD  UNIQUE(phone);
 
 create table do(
 id int primary key auto_increment,
@@ -69,3 +96,6 @@ FOREIGN KEY (idProject) REFERENCES project(id) on delete cascade on update casca
 
 alter table do
 add column status varchar(20); 
+
+ALTER TABLE do
+ADD  UNIQUE(idEntreprenor,idProject);

@@ -105,10 +105,11 @@ public class EditDemandUIController implements Initializable {
                 } else {
                     Options.information("impossible de terminer cette transaction");
                 }
+            } else {
+                Demand d = new Demand(Integer.parseInt(id.getText()), idClient, idService, status, Date.valueOf(dte));
+                Options.information(DemandController.updateDemand(d) + "");
+                refrechData();
             }
-            Demand d = new Demand(Integer.parseInt(id.getText()), idClient, idService, status, Date.valueOf(dte));
-            Options.information(DemandController.updateDemand(d) + "");
-            refrechData();
         } else {
             Options.information("les champs sont vide");
         }

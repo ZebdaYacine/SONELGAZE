@@ -30,6 +30,7 @@ import sonelgaze.BackEnd.ClientController;
 import sonelgaze.BackEnd.DemandController;
 import sonelgaze.BackEnd.DocumentController;
 import sonelgaze.BackEnd.HasController;
+import sonelgaze.BackEnd.Results;
 import sonelgaze.BackEnd.ServiceController;
 import static sonelgaze.UIControllers.DemandListUIController.*;
 
@@ -81,14 +82,17 @@ public class AddDemandUIController implements Initializable {
             int idService = ServiceController.getServiceIdFromName((String) CmbService.getSelectionModel().getSelectedItem());
             int idClient = ClientController.getClientIdFromName((String) CmbClient.getSelectionModel().getSelectedItem(), "client");
             Demand d = new Demand(idClient, idService, status, Date.valueOf(dte));
-            Options.information(DemandController.addDemand(d) + "");
+            String str = DemandController.addDemand(d) + "";
+            Options.information(str);
             refrechData();
-            d.setServiceName((String) CmbService.getSelectionModel().getSelectedItem());
-            d.setClientName((String) CmbClient.getSelectionModel().getSelectedItem());
-            d.setId(DemandController.getDemandId(d));
-            new Thread(() -> {
-                Bill.demandBill(d,ClientController.getClientPhoneFromId(idClient,"client"));
-            }).start();
+            if (str.equals("DEMAND_INSERTED")) {
+                d.setServiceName((String) CmbService.getSelectionModel().getSelectedItem());
+                d.setClientName((String) CmbClient.getSelectionModel().getSelectedItem());
+                d.setId(DemandController.getDemandId(d));
+                new Thread(() -> {
+                    Bill.demandBill(d, ClientController.getClientPhoneFromId(idClient, "client"));
+                }).start();
+            }
         } else {
             Options.information("les champssont vide");
         }
